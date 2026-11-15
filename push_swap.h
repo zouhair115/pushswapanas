@@ -6,7 +6,7 @@
 /*   By: login1 <login1@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/07 12:00:00 by login1            #+#    #+#             */
-/*   Updated: 2026/11/07 12:00:00 by login1           ###   ########.fr       */
+/*   Updated: 2026/11/15 19:54:02 by anarbia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,15 @@
 # define RRA 8
 # define RRB 9
 # define RRR 10
-
+/*this part of code is the algorithme struct */
 typedef struct s_node
 {
-	int				num;
-	int				index;
-	int				target_index;
-	int				cost_a;
-	int				cost_b;
-	int				total_cost;
+	//int				num;
+	//int				index;
+	//int				target_index;
+	//int				cost_a;
+	//int				cost_b;
+	//int				total_cost;
 	struct s_node	*next;
 	struct s_node	*prev;
 }	t_node;
