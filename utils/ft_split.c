@@ -31,6 +31,8 @@ static int	count_words(char const *s, char c)
 	return (count);
 }
 
+
+
 static int	fill(char **v, const char *s, char c, int words)
 {
 	int	i;

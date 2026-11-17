@@ -6,7 +6,7 @@
 /*   By: login1 <login1@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/07 12:00:00 by login1            #+#    #+#             */
-/*   Updated: 2026/11/15 19:54:02 by anarbia          ###   ########.fr       */
+/*   Updated: 2026/11/07 12:00:00 by login1           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,19 @@
 # define RRA 8
 # define RRB 9
 # define RRR 10
-/*this part of code is the algorithme struct */
+
 typedef struct s_node
 {
-	//int				num;
-	//int				index;
-	//int				target_index;
-	//int				cost_a;
-	//int				cost_b;
-	//int				total_cost;
+	int				num;
+	int				index;
+	int				target_index;
+	int				cost_a;
+	int				cost_b;
+	int				total_cost;
 	struct s_node	*next;
 	struct s_node	*prev;
 }	t_node;
+
 
 typedef struct s_list
 {
@@ -61,8 +62,20 @@ typedef struct s_list
 }	t_list;
 
 /* Algorithms */
+void	simple(t_list *a, t_list *b, size_t ops[RRR + 1]);
+void	medium(t_list *a, t_list *b, size_t ops[RRR + 1]);
+void	complex(t_list *a, t_list *b, size_t ops[RRR + 1]);
+int		pick_strategy(int flags[BENCH_IDX + 1], float disorder);
+void	print_algorithm(t_list *a, t_list *b, int flags[BENCH_IDX + 1]);
 
 /* Algorithm helpers */
+int		get_stack_size(t_list *a);
+int		is_sorted(t_list *a);
+t_node	*find_min_node(t_list *a);
+t_node	*find_max_node(t_list *a);
+int		rotation_cost(int pos, int size);
+void	rotate_num(int count, t_list *stack, char which,
+			size_t ops[RRR + 1]);
 
 /* Stack primitives (no output, no counting) */
 t_node	*stack_pop(t_list *l);
@@ -110,6 +123,27 @@ int		parse_input(int ac, char **av, t_list *a,
 			int flags[BENCH_IDX + 1]);
 
 /* Turk sort (complex) */
+void	assign_index(t_list *a, t_list *b);
+void	calculate_cost(t_list *a, t_list *b);
+void	calculate_cost_b(t_list *a, t_list *b);
+t_node	*find_cheapest(t_list *list);
+
+void	find_target(t_list *a, t_list *b);
+void	find_target_b_to_a(t_list *b, t_list *a);
+t_node	*find_next_bigger(t_list *a, int num);
+t_node	*find_next_smaller(t_list *b, int num);
+
+void	execute_rotations(t_list *a, t_list *b, t_node *cheapest,
+			size_t ops[RRR + 1]);
+void	execute_moves(t_list *a, t_list *b, t_node *cheapest,
+			size_t ops[RRR + 1]);
+void	execute_moves_b(t_list *a, t_list *b, t_node *cheapest,
+			size_t ops[RRR + 1]);
+
+void	sort_three(t_list *a, size_t ops[RRR + 1]);
+void	sort_a_to_b(t_list *a, t_list *b, size_t ops[RRR + 1]);
+void	sort_b_to_a(t_list *a, t_list *b, size_t ops[RRR + 1]);
+void	final_rotate(t_list *a, size_t ops[RRR + 1]);
 
 /* Benchmark */
 void	print_bench(int flags[BENCH_IDX + 1], float disorder,

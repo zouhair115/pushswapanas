@@ -9,9 +9,9 @@
 /*   Updated: 2026/11/07 12:00:00 by login1           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../push_swap.h"
 
-/* tata5od string twal flag checkez m3a flag medifini fil programme twalna*/
+#include "../push_swap.h"
+/* tata5od string twal flag o tat checkez m3a flag medifini fil programme twalna*/
 static int	flag_index(const char *s)
 {
 	if (!ft_strcmp(s, SIMPLE_FLAG))
@@ -26,7 +26,6 @@ static int	flag_index(const char *s)
 		return (BENCH_IDX);
 	return (-1);
 }
-
 /*vérifier wach tactiver le flag*/
 static int	parse_flag(const char *s, int flags[BENCH_IDX + 1])
 {
@@ -46,8 +45,7 @@ static int	parse_flag(const char *s, int flags[BENCH_IDX + 1])
 	flags[idx] = 1;
 	return (0);
 }
-
-/* chechez overflow ola non valid input and duplicate aoute dd_back */
+/* chechez overflow ola non valid input and duplicate and create node ajouté bi ft_lstadd_back */
 static int	add_number(t_list *a, const char *s)
 {
 	int		num;
@@ -70,33 +68,31 @@ static int	add_number(t_list *a, const char *s)
 	ft_lstadd_back(a, node);
 	return (0);
 }
-
 /*decouper une chaîne de caractères par 'espace' et traiter chaque flague a*/
 static int	add_arg(t_list *a, const char *arg)
 {
-	char	**av;
+	char	**v;
 	int		i;
 
-	av = ft_split(arg, ' ');
-	if (!av || !av[0])
+	v = ft_split(arg, ' ');
+	if (!v || !v[0])
 	{
-		ft_free_split(av);
+		ft_free_split(v);
 		return (-1);
 	}
 	i = 0;
-	while (av[i])
+	while (v[i])
 	{
-		if (add_number(a, av[i]) < 0)
+		if (add_number(a, v[i]) < 0)
 		{
-			ft_free_split(av);
+			ft_free_split(v);
 			return (-1);
 		}
 		i++;
 	}
-	ft_free_split(av);
+	ft_free_split(v);
 	return (0);
 }
-
 /* ta dour 3la arguments kamlin min 1 tal (ac - 1) */
 int	parse_input(int ac, char **av, t_list *a, int flags[BENCH_IDX + 1])
 {
